@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir /home/ridonk/containers \
+mkdir -v /home/ridonk/containers \
     /home/ridonk/containers/plex \
     /home/ridonk/containers/plex/config \
     /home/ridonk/containers/plex/transcode \
