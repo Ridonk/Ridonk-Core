@@ -56,7 +56,7 @@ docker create --name=sabnzbd \
     -p 8080:8080 -p 9090:9090 \
     linuxserver/sabnzbd
 
-$ docker run -d \
+docker run -d \
     -p 9000:9000 \
     --name portainer \
     --restart always \
