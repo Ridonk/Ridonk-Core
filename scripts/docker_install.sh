@@ -18,10 +18,12 @@ if [[ $1 == "f" ]]; then
         /home/ridonk/media/downloads/incomplete \
         /home/ridonk/media/movies \
         /home/ridonk/media/music \
+        /home/ridonk/media/playlists \
+        /home/ridonk/media/podcasts \
         /home/ridonk/media/tvseries
 fi
 if [[ $1 == "r" ]]; then
-    sudo apt-get remove docker docker-engine docker.io containerd runc
+        sudo apt-get remove docker docker-engine docker.io containerd runc
     sudo apt-get update && sudo apt-get upgrade
     sudo apt-get install \
         apt-transport-https \
