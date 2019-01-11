@@ -28,9 +28,9 @@ services:
     image: linuxserver/nzbget
     container_name: nzbget
     volumes:
-      - /opt/appdata/nzbget/config:/config
-      - /opt/downloads:/downloads
-      - /mnt/disk1/downloads/complete:/downloads/complete
+      - /mnt/storage/containers/nzbget/config:/config
+      - /mnt/storage/media/downloads/incomplete:/downloads
+      - /mnt/storage/media/downloads/complete:/downloads/complete
     ports:
       - 27020:6789
     restart: always
