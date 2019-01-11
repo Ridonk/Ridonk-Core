@@ -6,7 +6,7 @@ docker run \
     --restart always \
     --network=host \
     -e TZ="America/New_York" \
-    -v /home/ridonk/server/containers/plex/config:/config \
+    -v /home/ridonk/server/containers/plex:/config \
     -v /home/ridonk/server/containers/plex/transcode:/transcode \
     -v /home/ridonk/server/media:/data \
     -e PLEX_UID=1000 \
