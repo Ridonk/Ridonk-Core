@@ -19,14 +19,22 @@
 *color7:                          #E0E0E0
 *color15:                         #E8E8E8
 
-URxvt.font: xft:Source Code Pro for Powerline:size=11
-URxvt.depth:                      32
-URxvt*scrollBar:                  false
-URxvt*mouseWheelScrollPage:       false
-URxvt*cursorBlink:                true
-URxvt*saveLines:                  5000
-URxvt*internalBorder: 5
-URxvt*geometry: 70x19
+URxvt.modifier:             alt
+URxvt.font:                 xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14
+URxvt.boldFont:             xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14
+URxvt.italicFont:           xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14
+URxvt.boldItalicFont:       xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14,xft:PowerlineSymbols:pixelsize=14
+URxvt.geometry:             80x24
+URxvt.internalBorder:       9
+URxvt.iso14755:             false
+URxvt.iso14755_52:          false
+URxvt.scrollBar:            false
+URxvt.mouseWheelScrollPage: true
+URxvt.saveLines:            32767
+URxvt.urgentOnBell: true
+
+URxvt.url-select.launcher: web_browser
+URxvt.perl-ext-common: font-size,keyboard-select,url-select,clipboard,autocomplete-ALL-the-things
 
 rofi.color-enabled: true
 rofi.color-window: #272827, #13bf9d, #13bf9d
