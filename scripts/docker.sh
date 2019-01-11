@@ -6,6 +6,7 @@ docker run \
     --restart always \
     --network=host \
     -e TZ="America/New_York" \
+    -e PLEX_CLAIM="claim-jL9xAdRPQaWHq7z72j4q" \
     -v /home/ridonk/server/containers/plex:/config \
     -v /home/ridonk/server/containers/plex/transcode:/transcode \
     -v /home/ridonk/server/media:/data \
