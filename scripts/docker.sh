@@ -1,20 +1,18 @@
 #!/bin/bash
 
 docker run \
-    -d \
-    --name plex \
-    --restart always \
-    --network=host \
-    -e TZ="America/New_York" \
-    -e PLEX_CLAIM="claim-jL9xAdRPQaWHq7z72j4q" \
-    -v /home/ridonk/server/containers/plex:/config \
+    --name=plex \
+    --net=host \
+    -e VERSION=latest \
+    -e PUID=1000 -e PGID=1000 \
+    -e TZ=America/New_York \
+    -v /home/ridonk/server/containers/plex/config:/config \
+    -v /home/ridonk/server/media/tvseries:/data/tvshows \
+    -v /home/ridonk/server/media/movies:/data/movies \
     -v /home/ridonk/server/containers/plex/transcode:/transcode \
-    -v /home/ridonk/server/media:/data \
-    -e PLEX_UID=1000 \
-    -e PLEX_GID=1000 \
-    plexinc/pms-docker
+    linuxserver/plex
 
-docker create \
+docker run \
     --name sonarr \
     --restart always \
     -p 8989:8989 \
@@ -25,7 +23,7 @@ docker create \
     -v /home/ridonk/server/media/downloads:/downloads \
     linuxserver/sonarr
 
-docker create \
+docker run \
     --name=radarr \
     --restart always \
     -v /home/ridonk/server/containers/radarr:/config \
@@ -36,7 +34,7 @@ docker create \
     -p 7878:7878 \
     linuxserver/radarr
 
-docker create \
+docker run \
     --name=lidarr \
     --restart always \
     -v /home/ridonk/server/containers/lidarr:/config \
@@ -47,7 +45,7 @@ docker create \
     -p 8686:8686 \
     linuxserver/lidarr
 
-docker create --name=sabnzbd \
+docker run --name=sabnzbd \
     --restart always \
     -v /home/ridonk/server/containers/sabnzbd:/config \
     -v /home/ridonk/server/media/downloads:/downloads \

@@ -1,0 +1,56 @@
+version: '2'
+services:
+  plex:
+    image: plexinc/pms-docker
+    container_name: plex
+    volumes:
+      - /mnt/storage/containers/plex:/config
+      - /mnt/storage/media:/data
+    network_mode: host
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+  sabnzbd:
+    image: linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    volumes:
+      - /mnt/storage/containers/config/sabnzbd:/config
+      - /mnt/storage/media/downloads/complete:/downloads
+      - /mnt/storage/media/downloads/incomplete:/incomplete-downloads
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    volumes:
+      - /mnt/storage/containers/sonarr:/config
+      - /mnt/storage/media/tvseries:/tv
+      - /mnt/storage/media/downloads/complete/tv:/downloads
+      - /mnt/storage/downloads/complete/tv_import:/tv_import
+    ports:
+      - 8989:8989
+    links:
+      - nzbget
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    volumes:
+      - /mnt/storage/containers/radarr:/config
+      - /mnt/storage/media/movies:/movies
+      - /mnt/storage/media/downloads/complete/movies:/downloads
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+    restart:
+always
