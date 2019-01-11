@@ -46,7 +46,6 @@ services:
       - /mnt/storage/containers/sonarr:/config
       - /mnt/storage/media/tvseries:/tv
       - /mnt/storage/media/downloads/complete/tv:/downloads
-      - /mnt/storage/downloads/complete/tv_import:/tv_import
     ports:
       - 8989:8989
     links:
@@ -68,3 +67,16 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
     restart: always
+  lidarr:
+    image: linuxserver/lidarr
+    container_name: linuxserver/lidarr
+    volumes:
+      - /mnt/storage/media/music:/music
+      - /mnt/storage/containers/lidarr:/config
+      - /mnt/storage/media/downloads/complete/music:/downloads
+    ports:
+      - 8686:8686
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
