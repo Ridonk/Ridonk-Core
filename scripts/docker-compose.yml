@@ -69,7 +69,7 @@ services:
     restart: always
   lidarr:
     image: linuxserver/lidarr
-    container_name: linuxserver/lidarr
+    container_name: lidarr
     volumes:
       - /mnt/storage/media/music:/music
       - /mnt/storage/containers/lidarr:/config
