@@ -79,53 +79,49 @@ elif [[ $1 = 'sync-media' ]]; then
 elif [[ $1 = 'rebuild' ]]; then
     echo "Transferring containers..."
     echo "Syncing portainer..." && echo "$(date) - Syncing portainer..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/portainer /home/ridonk/containers
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/portainer /home/ridonk/server/containers
     echo "Syncing radarr..." && echo "$(date) - Syncing radarr..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/radarr /home/ridonk/containers
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/radarr /home/ridonk/server/containers
     echo "Syncing sonarr..." && echo "$(date) - Syncing sonarr..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sonarr /home/ridonk/containers
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sonarr /home/ridonk/server/containers
     echo "Syncing sabnzbd..." && echo "$(date) - Syncing sabnzbd..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sabnzbd /home/ridonk/containers
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sabnzbd /home/ridonk/server/containers
     echo "Syncing lidarr..." && echo "$(date) - Syncing lidarr..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/lidarr /home/ridonk/containers
-    echo "Syncing library..." && echo "$(date) - Syncing library..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/Library /home/ridonk/containers/plex
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/lidarr /home/ridonk/server/containers
 elif [[ $1 = 'rebuild-media' ]]; then
     echo "Syncing podcasts..." && echo "$(date) - Syncing podcasts..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/podcasts /home/ridonk/media
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/podcasts /home/ridonk/server/media
     echo "Syncing playlists..." && echo "$(date) - Syncing playlists..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/playlists /home/ridonk/media
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/playlists /home/ridonk/server/media
     echo "Syncing music..." && echo "$(date) - Syncing music..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/music  /home/ridonk/media
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/music  /home/ridonk/server/media
     echo "Syncing movies..." && echo "$(date) - Syncing movies..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/movies  /home/ridonk/media
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/movies  /home/ridonk/server/media
     echo "Syncing tvseries..." && echo "$(date) - Syncing tvseries..." >> /tmp/rsync-manual.txt
-    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/tvseries  /home/ridonk/media
+    sudo rsync -avP --log-file=/tmp/rsync-manual.txt /mnt/external/data/tvseries  /home/ridonk/server/media
 elif [[ $1 = 'rebuild-dry' ]]; then
     echo "Transferring containers..."
     echo "Syncing portainer..." && echo "$(date) - Syncing portainer..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/portainer /home/ridonk/containers
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/portainer /home/ridonk/server/containers
     echo "Syncing radarr..." && echo "$(date) - Syncing radarr..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/radarr /home/ridonk/containers
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/radarr /home/ridonk/server/containers
     echo "Syncing sonarr..." && echo "$(date) - Syncing sonarr..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sonarr /home/ridonk/containers
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sonarr /home/ridonk/server/containers
     echo "Syncing sabnzbd..." && echo "$(date) - Syncing sabnzbd..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sabnzbd /home/ridonk/containers
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/sabnzbd /home/ridonk/server/containers
     echo "Syncing lidarr..." && echo "$(date) - Syncing lidarr..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/lidarr /home/ridonk/containers
-    echo "Syncing library..." && echo "$(date) - Syncing library..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/Library /home/ridonk/containers/plex
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/lidarr /home/ridonk/server/containers
 elif [[ $1 = 'rebuild-media-dry' ]]; then
     echo "Syncing podcasts..." && echo "$(date) - Syncing podcasts..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/podcasts /home/ridonk/media
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/podcasts /home/ridonk/server/media
     echo "Syncing playlists..." && echo "$(date) - Syncing playlists..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/playlists /home/ridonk/media
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/playlists /home/ridonk/server/media
     echo "Syncing music..." && echo "$(date) - Syncing music..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/music  /home/ridonk/media
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/music  /home/ridonk/mediaserver/
     echo "Syncing movies..." && echo "$(date) - Syncing movies..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/movies  /home/ridonk/media
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/movies  /home/ridonk/mediaserver/
     echo "Syncing tvseries..." && echo "$(date) - Syncing tvseries..." >> /tmp/rsync-manual.txt
-    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/tvseries  /home/ridonk/media
+    sudo rsync -navP --log-file=/tmp/rsync-manual.txt /mnt/external/data/tvseries  /home/ridonk/server/media
 else
     echo "Valid options include: "
     echo "all  : Runs rsync on scripted server files"
