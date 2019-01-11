@@ -15,7 +15,7 @@ services:
     image: linuxserver/sabnzbd:latest
     container_name: sabnzbd
     volumes:
-      - /mnt/storage/containers/config/sabnzbd:/config
+      - /mnt/storage/containers/sabnzbd:/config
       - /mnt/storage/media/downloads/complete:/downloads
       - /mnt/storage/media/downloads/incomplete:/incomplete-downloads
     ports:
@@ -52,5 +52,4 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-    restart:
-always
+    restart: always
