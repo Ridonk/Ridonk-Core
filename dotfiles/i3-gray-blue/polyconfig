@@ -5,7 +5,7 @@ radius = 0
 fixed-center = false
 
 background = #272827
-foreground = #657b83
+foreground = #16A085
 
 line-size = 3
 line-color =
@@ -27,8 +27,8 @@ modules-left = i3
 modules-center = date eth
 modules-right = powermenu
 
-tray-position = left
-;tray-padding =
+tray-position = right 
+tray-padding = 1
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -42,7 +42,7 @@ radius = 0
 fixed-center = false
 
 background = #272827
-foreground = #657b83
+foreground = #16A085
 
 line-size = 3
 line-color =
@@ -79,21 +79,21 @@ index-sort = true
 wrapping-scroll = false
 
 label-mode-padding = 2
-label-mode-foreground = #657b83
-label-mode-background = #272827
+label-mode-foreground = #272827
+label-mode-background = #16A085
 
 label-focused = %index%
 label-focused-background = #4E524F
-label-focused-foreground = #272827
+label-focused-foreground = #232423
 label-focused-padding = 2
 
 label-unfocused = %index%
-label-unfocused-background = #7E807E
+label-unfocused-background = #16A085
 label-unfocused-foreground = #272827
 label-unfocused-padding = 2
 
 label-visible = %index%
-label-visible-background = #7E807E
+label-visible-background = #16A085
 label-visible-foreground = #272827
 label-visible-padding = 2
 
@@ -108,7 +108,7 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-foreground = #272827
-format-connected-background = #7E807E
+format-connected-background = #16A085
 format-connected-padding = 2
 label-connected = %essid%
 
@@ -128,7 +128,7 @@ interval = 3.0
 
 format-connected-padding = 2
 format-connected-foreground = #272827
-format-connected-background = #7E807E
+format-connected-background = #16A085
 format-connected-prefix = " "
 format-connected-prefix-foreground = #272827
 label-connected = %local_ip%
@@ -147,7 +147,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-foreground = #272827
-format-background = #7E807E
+format-background = #16A085
 format-padding = 2
 
 label = %date% %time%
