@@ -20,9 +20,9 @@
 *color15:                         #E8E8E8
 
 URxvt.modifier:             alt
-URxvt.font:                 xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14
-URxvt.boldFont:             xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14
-URxvt.italicFont:           xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14
+URxvt.font:                 xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14,xft:PowerlineSymbols:pixelsize=14
+URxvt.boldFont:             xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14,xft:PowerlineSymbols:pixelsize=14
+URxvt.italicFont:           xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14,xft:PowerlineSymbols:pixelsize=14
 URxvt.boldItalicFont:       xft:Source Code Pro for Powerline:pixelsize=14,xft:Droid Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:pixelsize=14,xft:Droid Sans Fallback:pixelsize=14,xft:FreeSans:pixelsize=14,xft:FreeSans:pixelsize=14,xft:PowerlineSymbols:pixelsize=14
 URxvt.geometry:             80x24
 URxvt.internalBorder:       9
