@@ -45,7 +45,7 @@ services:
     volumes:
       - /mnt/storage/containers/sonarr:/config
       - /mnt/storage/media/tvseries:/tv
-      - /mnt/storage/media/downloads/complete/tv:/downloads
+      - /mnt/storage/media/downloads/complete/tvseries:/downloads
     ports:
       - 8989:8989
     links:
