@@ -42,7 +42,7 @@ services:
     volumes:
       - /mnt/storage/containers/sonarr:/config
       - /mnt/storage/media/tvseries:/tv
-      - /mnt/storage/media/downloads/complete/tvseries:/downloads
+      - /mnt/storage/media/downloads/complete:/downloads
     ports:
       - 8989:8989
     restart: always
@@ -55,7 +55,7 @@ services:
     volumes:
       - /mnt/storage/containers/radarr:/config
       - /mnt/storage/media/movies:/movies
-      - /mnt/storage/media/downloads/complete/movies:/downloads
+      - /mnt/storage/media/downloads/complete:/downloads
     ports:
       - 7878:7878
     environment:
