@@ -24,32 +24,15 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-  nzbget:
-    image: linuxserver/nzbget
-    container_name: nzbget
-    volumes:
-      - /mnt/storage/containers/nzbget/config:/config
-      - /mnt/storage/media/downloads/incomplete:/downloads
-      - /mnt/storage/media/downloads/complete:/downloads/complete
-    ports:
-      - 27020:6789
-    restart: always
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
   sonarr:
     image: linuxserver/sonarr
     container_name: sonarr
-    depends_on:
-      - nzbget
     volumes:
       - /mnt/storage/containers/sonarr:/config
       - /mnt/storage/media/tvseries:/tv
       - /mnt/storage/media/downloads/complete/tvseries:/downloads
     ports:
       - 8989:8989
-    links:
-      - nzbget
     restart: always
     environment:
       - PUID=${PUID}
