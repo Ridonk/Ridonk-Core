@@ -4,4 +4,3 @@ sudo apt update
 sudo apt -y dist-upgrade
 sudo apt -y auto-remove
 sudo apt clean
-sudo apt purge -y $(dpkg -l | awk '/^rc/ { print $2 }')
