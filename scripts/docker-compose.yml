@@ -11,6 +11,18 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
+  tautulli:
+    image: tautulli/tautulli
+    container_name: tautulli
+    volumes:
+      - /mnt/storage/containers/tautulli:/config
+      - /mnt/storage/containers/plex/Library/Application\ Support/Plex\ Media\ Server/Logs:/plex_logs:ro
+    ports:
+      - 8181:8181
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
   sabnzbd:
     image: linuxserver/sabnzbd:latest
     container_name: sabnzbd
