@@ -1,37 +1,41 @@
-version: '2'
+version: '3'
 services:
   plex:
     image: plexinc/pms-docker
     container_name: plex
     volumes:
-      - /mnt/storage/containers/plex:/config
-      - /mnt/storage/media:/data
+      - ${POOL}/containers/plex:/config
+      - ${POOL}/media:/data
     network_mode: host
     restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
+      - TZ=${TZ}
+      - HOSTNAME="Olympus Plex"
+      - ADVERTISE_IP="http://10.240.0.4:32400/"
   tautulli:
     image: tautulli/tautulli
     container_name: tautulli
     volumes:
-      - /mnt/storage/containers/tautulli:/config
-      - /mnt/storage/containers/plex/Library/Application\ Support/Plex\ Media\ Server/Logs:/plex_logs:ro
+      - ${POOL}/containers/tautulli:/config
+      - ${POOL}/containers/plex/Library/Application\ Support/Plex\ Media\ Server/Logs:/plex_logs:ro
     ports:
       - 8181:8181
     restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
+      - TZ=${TZ}
   sabnzbd:
     image: linuxserver/sabnzbd:latest
     container_name: sabnzbd
     volumes:
-      - /mnt/storage/containers/sabnzbd:/config
-      - /mnt/storage/media/downloads/complete:/downloads
-      - /mnt/storage/media/downloads/incomplete:/incomplete-downloads
+      - ${POOL}/containers/sabnzbd:/config
+      - ${POOL}/media/downloads/complete:/downloads
+      - ${POOL}/media/downloads/incomplete:/incomplete-downloads
     ports:
-      - 8080:8080
+      - 8081:8081
     restart: always
     environment:
       - PUID=${PUID}
@@ -40,9 +44,9 @@ services:
     image: linuxserver/sonarr
     container_name: sonarr
     volumes:
-      - /mnt/storage/containers/sonarr:/config
-      - /mnt/storage/media/tvseries:/tv
-      - /mnt/storage/media/downloads/complete:/downloads
+      - ${POOL}/containers/sonarr:/config
+      - ${POOL}/media/tvseries:/tv
+      - ${POOL}/media/downloads/complete:/downloads
     ports:
       - 8989:8989
     restart: always
@@ -53,9 +57,9 @@ services:
     image: linuxserver/radarr
     container_name: radarr
     volumes:
-      - /mnt/storage/containers/radarr:/config
-      - /mnt/storage/media/movies:/movies
-      - /mnt/storage/media/downloads/complete:/downloads
+      - ${POOL}/containers/radarr:/config
+      - ${POOL}/media/movies:/movies
+      - ${POOL}/media/downloads/complete:/downloads
     ports:
       - 7878:7878
     environment:
@@ -66,15 +70,28 @@ services:
     image: linuxserver/lidarr
     container_name: lidarr
     volumes:
-      - /mnt/storage/media/music:/music
-      - /mnt/storage/containers/lidarr:/config
-      - /mnt/storage/media/downloads/complete/music:/downloads
+      - ${POOL}/media/music:/music
+      - ${POOL}/containers/lidarr:/config
+      - ${POOL}/media/downloads/complete/music:/downloads
     ports:
       - 8686:8686
     restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
+  ombi:
+    container_name: ombi
+    restart: always
+    image: linuxserver/ombi
+    volumes:
+      - ${USERDIR}/containers/ombi:/config
+      - ${USERDIR}/containers/shared:/shared
+    ports:
+      - "3579:3579"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
   watchtower:
     image: v2tec/watchtower
     container_name: watchtower
@@ -82,3 +99,76 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     command: --schedule "0 0 4 * * *" --cleanup
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    hostname: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - ${POOL}/containers/mariadb/db:/var/lib/mysql
+      - ${POOL}/containers/mariadb:/config
+      - ${POOL}/containers/shared:/shared
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${HTTP_USERNAME}
+      - TZ=${TZ}
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud
+    restart: always
+    ports:
+      - 8082:80
+      - 8443:443
+    links:
+      - mariadb
+    volumes:
+      - ${POOL}/containers/nextcloud:/config
+      - ${POOL}/media:/data
+      - ${POOL}/containers/shared:/shared
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+  traefik:
+    image: traefik
+    hostname: traefik
+    container_name: traefik
+    restart: always
+    domainname: ${DOMAINNAME}
+    networks:
+      - default
+      - traefik_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    environment:
+      - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL}
+      - CLOUDFLARE_API_KEY=${CLOUDFLARE_API_KEY}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.frontend.rule=Host:traefik.${DOMAINNAME}"
+#      - "traefik.frontend.rule=Host:${DOMAINNAME}; PathPrefixStrip: /traefik"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.frontend.headers.SSLRedirect=true"
+      - "traefik.frontend.headers.STSSeconds=315360000"
+      - "traefik.frontend.headers.browserXSSFilter=true"
+      - "traefik.frontend.headers.contentTypeNosniff=true"
+      - "traefik.frontend.headers.forceSTSHeader=true"
+      - "traefik.frontend.headers.SSLHost=${DOMAINNAME}"
+      - "traefik.frontend.headers.STSIncludeSubdomains=true"
+      - "traefik.frontend.headers.STSPreload=true"
+      - "traefik.frontend.headers.frameDeny=true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${POOL}/containers/traefik:/etc/traefik
+      - ${POOL}/containers/shared:/shared
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+    default:
+      driver: bridge
