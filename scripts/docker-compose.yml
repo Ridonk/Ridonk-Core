@@ -220,15 +220,18 @@ services:
       - MYSQL_HOST=${MYSQL_HOST}
       - NEXTCLOUD_ADMIN_USER=${HTTP_USERNAME}
       - NEXTCLOUD_ADMIN_PASSWORD=${HTTP_PASSWORD_PLAIN}
+      - TZ=${TZ}
     networks:
       - traefik_proxy
       - backend
+    ports:
+      - 8082:80
     labels:
       - "traefik.enable=true"
       - "traefik.backend=nextcloud"
       - "traefik.frontend.rule=Host:nextcloud.${DOMAINNAME}"
-#      - "traefik.frontend.rule=Host:${DOMAINNAME}; PathPrefix: /ombi"
-      - "traefik.port=80"
+#      - "traefik.frontend.rule=Host:${DOMAINNAME}; PathPrefix: /nextcloud"
+      - "traefik.port=8082"
       - "traefik.docker.network=traefik_proxy"
       - "traefik.frontend.headers.SSLRedirect=true"
       - "traefik.frontend.headers.STSSeconds=315360000"
