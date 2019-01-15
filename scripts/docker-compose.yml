@@ -288,7 +288,7 @@ services:
       - DB_HOST=${MYSQL_HOST}
       - DB_NAME=gitea
       - DB_USER=gitea
-      - DB_PASSWD=${HTTP_PASSWORD}
+      - DB_PASSWD=${HTTP_PASSWORD_PLAIN}
     restart: always
     networks:
       - backend
